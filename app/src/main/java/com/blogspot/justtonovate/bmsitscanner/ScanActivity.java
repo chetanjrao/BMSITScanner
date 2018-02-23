@@ -25,6 +25,12 @@ public class ScanActivity extends AppCompatActivity {
         Log.d(TAG, "Scan Activity has Started");
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     public void setupNavigation(int item_number, BottomNavigationView bottomNavigationView){
         Menu menu= bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(item_number);
@@ -45,6 +51,21 @@ public class ScanActivity extends AppCompatActivity {
                         break;
                 }
                 return false;
+            }
+        });
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.scan:
+                        Intent scan = new Intent(context, HomeClass);
+                        context.startActivity(scan);
+                        break;
+                    case R.id.complain:
+                        Intent complain = new Intent(context, targetClass);
+                        context.startActivity(complain);
+                        break;
+                }
             }
         });
     }

@@ -27,21 +27,41 @@ public class ComplainActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(item_number);
         menuItem.setChecked(true);
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
     public void enableNavigation(final Class HomeClass, final Class targetClass, final Context context, BottomNavigationView bottomNavigationView){
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.scan:
-                        Intent scan = new Intent(context, HomeClass);
+                        Intent scan = new Intent(context, targetClass);
                         context.startActivity(scan);
                         break;
                     case R.id.complain:
-                        Intent complain = new Intent(context, targetClass);
+                        Intent complain = new Intent(context, HomeClass);
                         context.startActivity(complain);
                         break;
                 }
                 return false;
+            }
+        });
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.scan:
+                        Intent scan = new Intent(context, targetClass);
+                        context.startActivity(scan);
+                        break;
+                    case R.id.complain:
+                        Intent complain = new Intent(context, HomeClass);
+                        context.startActivity(complain);
+                        break;
+                }
             }
         });
     }
