@@ -5,23 +5,16 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ComplainActivity extends AppCompatActivity {
-    private static final String TAG = "ComplainActivity";
-    private static final Class HomeClass = ComplainActivity.class;
-    private static final Class targetClass = ScanActivity.class;
-    private static final int item_number = 1;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complain);
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        setupNavigation(item_number, bottomNavigationView);
-        enableNavigation(HomeClass, targetClass, ComplainActivity.this, bottomNavigationView);
-    }
+import com.blogspot.justtonovate.bmsitscanner.R;
+
+/**
+ * Created by Chethan on 2/24/2018.
+ */
+
+public class Navigation_helper {
     public void setupNavigation(int item_number, BottomNavigationView bottomNavigationView){
         Menu menu= bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(item_number);
